@@ -1,1 +1,24 @@
+name: Compile ESP32 Binary
+on: [push, workflow_dispatch]
 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Build with ESP-IDF
+        uses: espressif/esp-idf-ci-action@v1
+        with:
+          esp_idf_version: release-v5.1
+          target: esp32
+
+      - name: Upload Binary Package
+        uses: actions/upload-artifact@v4
+        with:
+          name: esp32-serprog-binaries
+          path: |
+            build/bootloader/bootloader.bin
+            build/partition_table/partition-table.bin
+            build/esp32-serprog.bin
