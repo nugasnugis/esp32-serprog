@@ -13,13 +13,13 @@ jobs:
         with:
           esp_idf_version: release-v5.1
           target: esp32
-          path: 'src/serprog/main' # <-- Fixes the missing CMakeLists.txt error
+          path: 'src/serprog' # <-- Fixed to point to the correct top-level project root
 
       - name: Upload Binary Package
         uses: actions/upload-artifact@v4
         with:
           name: esp32-serprog-binaries
           path: |
-            src/serprog/main/build/bootloader/bootloader.bin
-            src/serprog/main/build/partition_table/partition-table.bin
-            src/serprog/main/build/esp32-serprog.bin
+            src/serprog/build/bootloader/bootloader.bin
+            src/serprog/build/partition_table/partition-table.bin
+            src/serprog/build/esp32-serprog.bin
