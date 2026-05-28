@@ -13,13 +13,13 @@ jobs:
         with:
           esp_idf_version: release-v5.1
           target: esp32
-          path: 'src/serprog' # <-- Fixed to point to the correct top-level project root
+          path: 'src/serprog'
 
       - name: Upload Binary Package
         uses: actions/upload-artifact@v4
         with:
           name: esp32-serprog-binaries
           path: |
-            src/serprog/build/bootloader/bootloader.bin
-            src/serprog/build/partition_table/partition-table.bin
-            src/serprog/build/esp32-serprog.bin
+            **/build/bootloader/bootloader.bin
+            **/build/partition_table/partition-table.bin
+            **/build/*.bin
